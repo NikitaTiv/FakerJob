@@ -36,16 +36,24 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_CONTRIB_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'django_extensions',
 ]
+
+THIRD_PARTY_APPS = [
+    'django_extensions',  # an application for shell_plus
+]
+
+PROJECT_APPS = [
+    'candidates',
+]
+
+INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_CONTRIB_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
