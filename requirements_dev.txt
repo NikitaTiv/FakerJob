@@ -1,3 +1,5 @@
+-r requirements.txt
+
 mypy==1.8.0
 mypy-extensions==1.0.0
 tomli==2.0.1
@@ -10,3 +12,6 @@ flake8-eradicate==1.5.0
 mccabe==0.7.0
 pycodestyle==2.11.1
 pyflakes==3.2.0
+certifi==2024.2.2
+sentry-sdk==1.40.3
+urllib3==2.2.0
