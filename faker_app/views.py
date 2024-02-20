@@ -1,3 +1,5 @@
-from django.shortcuts import render  # noqa: F401
+from django.http import HttpResponse
 
-# Create your views here.
+
+def show_custom_404(request, exception):
+    return HttpResponse('<h1>Страница не найдена</h1>')
