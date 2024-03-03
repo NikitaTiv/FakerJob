@@ -4,5 +4,8 @@ style:
 types:
 	mypy .
 
+test:
+	./manage.py test
+
 check:
-	make style types
+	make style types test

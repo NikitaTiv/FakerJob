@@ -1,4 +1,8 @@
-import os
+from django_countries import countries
 
 
-RECORDS_QTY_FOR_DB = int(os.environ.get('RECORDS_QTY_FOR_DB', 10))
+INVERTED_COUNTRY_DICT = {country.name: country.code for country in countries}
+
+GENDER_DICT = {'male': 0, 'female': 1}
+
+DEFAULT_RECORDS_QTY = 10

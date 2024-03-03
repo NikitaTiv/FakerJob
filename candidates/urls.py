@@ -1,4 +1,8 @@
 from django.urls import path
-from candidates.models import Candidate
 
-urlpatterns = []
+from candidates.views import index
+
+
+urlpatterns = [
+    path('', index, name='home')
+]
