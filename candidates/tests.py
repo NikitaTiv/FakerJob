@@ -54,12 +54,12 @@ class RandomUserDataCreatorTestCase(TestCase):
         self.assertEqual(items.first().username, obj['login']['username'])
         self.assertEqual(items.first().first_name, obj['name']['first'])
         self.assertEqual(items.first().last_name, obj['name']['last'])
-        self.assertEqual(items.first().password, FAKE_PASSWORD)
         self.assertEqual(items.first().email, obj['email'])
         self.assertEqual(items.first().gender, GENDER_DICT.get(obj['gender']))
         self.assertEqual(items.first().about, '')
         self.assertEqual(items.first().country, INVERTED_COUNTRY_DICT.get(obj['location']['country']))
         self.assertEqual(items.first().is_fake, True)
+        self.assertTrue(items.first().check_password(FAKE_PASSWORD))
         logger_mock.assert_called_once_with('RandomUserDataCreator: the new records has been added.')
 
     def test__prepare_data__success_case(self):
@@ -70,7 +70,7 @@ class RandomUserDataCreatorTestCase(TestCase):
                 'email': expected_obj['email'], 'gender': GENDER_DICT.get(expected_obj['gender']), 'is_fake': True,
                 'country': INVERTED_COUNTRY_DICT.get(expected_obj['location']['country']), 'about': '',
                 'username': expected_obj['login']['username'], 'first_name': expected_obj['name']['first'],
-                'last_name': expected_obj['name']['last'], 'password': FAKE_PASSWORD,
+                'last_name': expected_obj['name']['last'],
             }
         ]
 

@@ -40,12 +40,17 @@ class RandomUserDataCreator:
                 'username': obj['login']['username'],
                 'first_name': obj['name']['first'],
                 'last_name': obj['name']['last'],
-                'password': FAKE_PASSWORD,
             })
         return prepared_data
 
     def create_candidates_records(self, validated_data: list[dict[str, str | bool]]) -> list[Candidate]:
-        return Candidate.objects.bulk_create([Candidate(**data) for data in validated_data])
+        candidate_list = []
+        for obj_data in validated_data:
+            user = Candidate(**obj_data)
+            user.set_password(FAKE_PASSWORD)
+            user.save()
+            candidate_list.append(user)
+        return candidate_list
 
     def run(self) -> None:
         self.get_data()
