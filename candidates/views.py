@@ -4,10 +4,10 @@ from django.shortcuts import render
 from candidates.models import Candidate
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    return HttpResponse('привет')
-
-
-def profile(request: HttpRequest) -> HttpResponse:
-    template_dict = {'header': 'Страница о кандидате', 'candidate': Candidate.objects.first().__dict__}
+def get_all_candidates(request: HttpRequest) -> HttpResponse:
+    template_dict = {'header': 'Candidates list', 'candidates': Candidate.objects.all()}
     return render(request, 'candidates/main_page.html', context=template_dict)
+
+
+def get_candidate_info(request: HttpRequest, candidate_id: int) -> HttpResponse:
+    return HttpResponse(f'<h1>Страница о кандидате с id {candidate_id}')

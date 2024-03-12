@@ -6,6 +6,14 @@
     </head>
     <body>
         <h1>{{ header }}</h1>
-        <p>{{ candidate }}</p>
+        <ul>
+            {% for candidate in candidates %}
+                <p>{{ candidate.first_name }}</p>
+                <p><a href="{% url 'profile' candidate.id %}">Страница кандидата</a></p>
+                {% if not forloop.last %}
+                    <hr/>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </body>
 </html>
