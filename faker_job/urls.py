@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from faker_app.views import show_custom_404
+from faker_app.views import main_redirect, show_custom_404
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', main_redirect),
     path('candidates/', include('candidates.urls'))
 ]
 
