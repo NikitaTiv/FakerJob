@@ -33,6 +33,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 AUTH_USER_MODEL = 'candidates.Candidate'
 
 # Application definition
@@ -48,6 +52,7 @@ DJANGO_CONTRIB_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_extensions',  # an application for shell_plus
+    'debug_toolbar',
 ]
 
 PROJECT_APPS = [
@@ -64,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'faker_job.urls'

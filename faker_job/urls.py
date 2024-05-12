@@ -22,6 +22,7 @@ from faker_app.views import main_redirect, show_custom_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
     path('', main_redirect),
     path('candidates/', include('candidates.urls'))
 ]

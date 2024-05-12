@@ -9,7 +9,7 @@
         <ul>
             {% for candidate in candidates %}
                 <p>{{ candidate.first_name }}</p>
-                <p><a href="{{ candidate.get_absolute_url }}">Страница кандидата</a></p>
+                <p><a href="{% url 'profile' candidate.id %}">Страница кандидата</a></p>
                 {% if not forloop.last %}
                     <hr/>
                 {% endif %}
