@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import UserManager
 from django_countries.fields import CountryField
-from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -24,14 +24,17 @@ class Candidate(AbstractUser):
     email = models.EmailField(max_length=128, unique=True)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True)
     about = models.CharField(max_length=512, blank=True, default='')
-    country = CountryField(null=True)
+    country = models.CharField(max_length=200,  null=True, choices=CountryField().choices + [('', 'Select Country')])
     is_fake = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='tags')
 
-    objects = models.Manager()
+    objects = UserManager()
     real_objects = RealManager()
     fake_objects = FakeManager()
+
+    class Meta:
+        ordering = ["-id"]
 
     def __str__(self) -> str:
         return f'User: {self.pk} ({self.first_name} {self.last_name})'
