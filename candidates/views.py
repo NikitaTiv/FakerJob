@@ -5,7 +5,7 @@ from candidates.models import Candidate
 
 
 def get_all_candidates(request: HttpRequest) -> HttpResponse:
-    template_dict = {'header': 'Candidates list', 'candidates': Candidate.objects.all()}
+    template_dict = {'header': 'Candidates list', 'candidates': Candidate.objects.filter(is_active=True)}
     return render(request, 'candidates/main_page.html', context=template_dict)
 
 

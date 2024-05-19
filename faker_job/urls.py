@@ -28,3 +28,5 @@ urlpatterns = [
 ]
 
 handler404 = show_custom_404
+admin.site.site_header = 'Faker Job panel'
+admin.site.index_title = 'Candidates objects'
