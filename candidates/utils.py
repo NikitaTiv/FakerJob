@@ -15,9 +15,9 @@ class RandomUserDataCreator:
     REQUIRED_FIELDS = 'gender,name,location,email,login'
     DEFAULT_RECORDS_QTY = 10
 
-    def __init__(self, record_qty: int = DEFAULT_RECORDS_QTY) -> None:
+    def __init__(self, record_qty: int | None) -> None:
         self.data: list = []
-        self.record_qty: int = record_qty
+        self.record_qty: int = record_qty or self.DEFAULT_RECORDS_QTY
 
     def get_data(self) -> None:
         params: dict[str, str | int] = {'results': self.record_qty, 'inc': self.REQUIRED_FIELDS}

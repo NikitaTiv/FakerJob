@@ -10,5 +10,5 @@ class Command(BaseCommand):
 
     def handle(self, **kwargs: Any) -> None:
         candidates_qty = kwargs.get('quantity')
-        creator = RandomUserDataCreator(candidates_qty) if candidates_qty else RandomUserDataCreator()
+        creator = RandomUserDataCreator(candidates_qty)
         creator.run()
