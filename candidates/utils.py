@@ -15,12 +15,12 @@ class RandomUserDataCreator:
     REQUIRED_FIELDS = 'gender,name,location,email,login'
     DEFAULT_RECORDS_QTY = 10
 
-    def __init__(self, record_qty: int | None) -> None:
+    def __init__(self, quantity: int = DEFAULT_RECORDS_QTY) -> None:
         self.data: list = []
-        self.record_qty: int = record_qty or self.DEFAULT_RECORDS_QTY
+        self.quantity: int = quantity
 
     def get_data(self) -> None:
-        params: dict[str, str | int] = {'results': self.record_qty, 'inc': self.REQUIRED_FIELDS}
+        params: dict[str, str | int] = {'results': self.quantity, 'inc': self.REQUIRED_FIELDS}
         try:
             response = requests.get(self.CANDIDATES_URL, params=params)
             response.raise_for_status()

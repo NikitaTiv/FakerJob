@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ header }}</title>
+    </head>
+    <body>
+        <h1>{{ header }}</h1>
+        <ul>
+            <p>{{ candidate.first_name }}, {{ candidate.last_name }}</p>
+            <p><a href="{% url 'edit_candidate' candidate.pk %}">Edit candidate info</a></p>
+        </ul>
+    </body>
+</html>

@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{{ header }}</title>
-    </head>
-    <body>
-        <h1>{{ header }}</h1>
-        <ul>
-            {% for candidate in candidates %}
-                <p>{{ candidate.id }}, {{ candidate.username }}</p>
-                <p><a href="{{ candidate.get_absolute_url }}">Страница кандидата</a></p>
-                {% if not forloop.last %}
-                    <hr/>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ header }}</h1>
+    <ul>
+        {% for candidate in candidates %}
+            <p>{{ candidate.id }}, {{ candidate.username }}</p>
+            <p><a href="{{ candidate.get_absolute_url }}">Страница кандидата</a></p>
+            {% if not forloop.last %}
+                <hr/>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
