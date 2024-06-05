@@ -43,5 +43,5 @@ class Candidate(AbstractUser):
     def __str__(self) -> str:
         return f'User: {self.pk} ({self.first_name} {self.last_name})'
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse('candidate_profile', kwargs={'candidate_id': self.pk})

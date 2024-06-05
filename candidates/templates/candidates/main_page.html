@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ header }}</h1>
     <ul>
         {% for candidate in candidates %}
             <p>{{ candidate.id }}, {{ candidate.username }}</p>

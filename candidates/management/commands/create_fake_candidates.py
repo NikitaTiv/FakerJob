@@ -9,6 +9,6 @@ class Command(BaseCommand):
         parser.add_argument('-q', '--quantity', type=int, help='The quantity of fake candidates.')
 
     def handle(self, **kwargs: Any) -> None:
-        candidates_qty = {key: value for key, value in kwargs.items() if key=='quantity' and value}
+        candidates_qty = {key: value for key, value in kwargs.items() if key == 'quantity' and value}
         creator = RandomUserDataCreator(**candidates_qty)
         creator.run()

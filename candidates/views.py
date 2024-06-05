@@ -16,6 +16,7 @@ def get_candidate_info(request: HttpRequest, candidate_id: int) -> HttpResponse:
                      'candidate': Candidate.objects.get(id=candidate_id)}
     return render(request, 'candidates/candidate_info.html', context=template_dict)
 
+
 def edit_candidate(request: HttpRequest, candidate_id: int) -> HttpResponse:
     candidate_obj = get_object_or_404(Candidate, pk=candidate_id)
     form = CandidateForm(instance=candidate_obj)

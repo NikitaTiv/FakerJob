@@ -4,6 +4,7 @@ from django.db.models.query import QuerySet
 
 from candidates.models import Candidate, Tag
 
+
 @admin.register(Candidate)
 class CandidateAdmin(admin.ModelAdmin):
     fields = ('username', 'first_name', 'last_name', 'email', 'gender',
@@ -20,7 +21,7 @@ class CandidateAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
     list_per_page = 20
 
-    def has_add_permission(self, request: WSGIRequest) -> None:
+    def has_add_permission(self, request: WSGIRequest) -> None:  # noqa: U100
         return
 
     @admin.action(description='Set as active')
