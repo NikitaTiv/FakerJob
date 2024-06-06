@@ -8,5 +8,5 @@ class CandidateForm(forms.ModelForm):
 
     class Meta:
         model = Candidate
-        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'about', 'country', 'tags')
+        fields = ('photo', 'username', 'first_name', 'last_name', 'email', 'gender', 'about', 'country', 'tags')
         widgets = {'about': forms.Textarea(attrs={'cols': 20, 'rows': 5})}

@@ -21,7 +21,7 @@ def edit_candidate(request: HttpRequest, candidate_id: int) -> HttpResponse:
     candidate_obj = get_object_or_404(Candidate, pk=candidate_id)
     form = CandidateForm(instance=candidate_obj)
     if request.method == 'POST':
-        form = CandidateForm(request.POST, instance=candidate_obj)
+        form = CandidateForm(request.POST, request.FILES, instance=candidate_obj)
         if form.is_valid():
             return form.save() and redirect(candidate_obj.get_absolute_url())
 

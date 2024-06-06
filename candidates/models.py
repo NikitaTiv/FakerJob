@@ -1,8 +1,12 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django_countries.fields import CountryField
 from django.urls import reverse
+
+from faker_job.settings import MEDIA_FOLDER, MEDIA_ROOT
 
 
 class Tag(models.Model):
@@ -32,6 +36,7 @@ class Candidate(AbstractUser):
     is_fake = models.BooleanField(default=False, editable=False, verbose_name='fake status')
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='tags')
+    photo = models.ImageField(upload_to='candidate_photos', default=None, null=True, blank=True)
 
     objects = UserManager()
     real_objects = RealManager()
@@ -45,3 +50,11 @@ class Candidate(AbstractUser):
 
     def get_absolute_url(self) -> str:
         return reverse('candidate_profile', kwargs={'candidate_id': self.pk})
+
+    def save(self, *args, **kwargs):
+        old_file = self.pk and Candidate.objects.get(pk=self.pk).photo
+        try:
+            old_file and os.remove(f'{MEDIA_FOLDER}/{str(old_file)}')
+        except FileNotFoundError:
+            pass
+        super().save(*args, **kwargs)
