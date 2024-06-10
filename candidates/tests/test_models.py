@@ -22,7 +22,7 @@ class CandidateTestCase(TestCase):
             patch('logging.Logger.info') as logger_mock:
             self.candidate_1.save()
             remove_mock.assert_called_once()
-            logger_mock.assert_called_once_with(f"The {self.candidate_1.photo} for user ID " \
+            logger_mock.assert_called_once_with(f"The {self.candidate_1.photo} for user ID "
                                                 f"{self.candidate_1.pk} doesn't exist.")
 
     def test__check_remove__no_photo_remove_wont_happen(self):

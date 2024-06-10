@@ -1,5 +1,6 @@
 import logging
 import os
+from typing import Any
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -55,11 +56,12 @@ class Candidate(AbstractUser):
     def get_absolute_url(self) -> str:
         return reverse('candidate_profile', kwargs={'candidate_id': self.pk})
 
-    def save(self, *args, **kwargs):
+    def save(self, *args: tuple[Any], **kwargs: dict[Any, Any]) -> None:
         old_file = self.pk and Candidate.objects.get(pk=self.pk).photo
-        try:  # TODO: use a receiver here and default storage here.
-            old_file and os.remove(f'{MEDIA_FOLDER}/{str(old_file)}')
-        except FileNotFoundError:
-            logger.info(f"The {old_file} for user ID {self.pk} doesn't exist.")
+        if old_file:
+            try:  # TODO: use a receiver here and default storage here.
+                os.remove(f'{MEDIA_FOLDER}/{str(old_file)}')
+            except FileNotFoundError:
+                logger.info(f"The {old_file} for user ID {self.pk} doesn't exist.")
 
         super().save(*args, **kwargs)
