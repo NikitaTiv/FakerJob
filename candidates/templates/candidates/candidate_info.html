@@ -1,7 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'candidates/base.html' %}
 
 {% block content %}
     <ul>
+        {% if candidate.photo %}
+            <p><img class="candidate_main_photo" src="{{ candidate.photo.url }}"></p>
+        {% endif %}
         <p>{{ candidate.first_name }}, {{ candidate.last_name }}</p>
         <p><a href="{% url 'edit_candidate' candidate.pk %}">Edit candidate info</a></p>
     </ul>

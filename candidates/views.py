@@ -26,4 +26,4 @@ def edit_candidate(request: HttpRequest, candidate_id: int) -> HttpResponse:
             return form.save() and redirect(candidate_obj.get_absolute_url())
 
     return render(request, 'candidates/edit_candidate.html',
-                  context={'header': 'Edit candidate', 'form': form})
+                  context={'header': 'Edit candidate', 'form': form, 'candidate': candidate_obj})

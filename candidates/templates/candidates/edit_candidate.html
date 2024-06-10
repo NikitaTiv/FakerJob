@@ -1,6 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'candidates/base.html' %}
 
 {% block content %}
+    {% if candidate.photo %}
+        <p><img class="candidate_main_photo" src="{{ candidate.photo.url }}"></p>
+    {% endif %}
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

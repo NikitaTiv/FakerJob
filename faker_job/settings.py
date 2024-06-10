@@ -77,9 +77,7 @@ ROOT_URLCONF = 'faker_job.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -179,3 +177,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_FOLDER = 'media'
 MEDIA_ROOT = BASE_DIR / MEDIA_FOLDER
+MEDIA_URL = f'/{MEDIA_FOLDER}/'
