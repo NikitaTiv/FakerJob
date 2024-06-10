@@ -1,3 +1,4 @@
+import logging
 import os
 
 from django.db import models
@@ -6,7 +7,10 @@ from django.contrib.auth.models import UserManager
 from django_countries.fields import CountryField
 from django.urls import reverse
 
-from faker_job.settings import MEDIA_FOLDER, MEDIA_ROOT
+from faker_job.settings import MEDIA_FOLDER
+
+
+logger = logging.getLogger(__name__)
 
 
 class Tag(models.Model):
@@ -53,8 +57,9 @@ class Candidate(AbstractUser):
 
     def save(self, *args, **kwargs):
         old_file = self.pk and Candidate.objects.get(pk=self.pk).photo
-        try:
+        try:  # TODO: use a receiver here and default storage here.
             old_file and os.remove(f'{MEDIA_FOLDER}/{str(old_file)}')
         except FileNotFoundError:
-            pass
+            logger.info(f"The {old_file} for user ID {self.pk} doesn't exist.")
+
         super().save(*args, **kwargs)
