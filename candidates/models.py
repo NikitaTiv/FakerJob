@@ -56,7 +56,7 @@ class Candidate(AbstractUser):
     def get_absolute_url(self) -> str:
         return reverse('candidate_profile', kwargs={'candidate_id': self.pk})
 
-    def save(self, *args: tuple[Any], **kwargs: dict[Any, Any]) -> None:
+    def save(self, *args: tuple[Any], **kwargs: dict[str, Any]) -> None:
         old_file = self.pk and Candidate.objects.get(pk=self.pk).photo
         if old_file:
             try:  # TODO: use a receiver here and default storage here.

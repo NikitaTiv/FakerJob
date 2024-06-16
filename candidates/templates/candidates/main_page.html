@@ -2,7 +2,7 @@
 
 {% block content %}
     <ul>
-        {% for candidate in candidates %}
+        {% for candidate in object_list %}
             <p>{{ candidate.id }}, {{ candidate.username }}</p>
             <p><a href="{{ candidate.get_absolute_url }}">Страница кандидата</a></p>
             {% if not forloop.last %}
