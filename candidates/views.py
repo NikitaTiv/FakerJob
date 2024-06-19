@@ -7,25 +7,27 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, FormView
 
 from candidates.forms import CandidateForm
+from candidates.mixins import HeaderMixin
 from candidates.models import Candidate
 
 
-class CandidateList(ListView):
+class CandidateList(HeaderMixin, ListView):
     queryset = Candidate.objects.filter(is_active=True, is_staff=False)
     template_name = 'candidates/main_page.html'
-    extra_context = {'header': 'Candidates list'}
+    header_name = 'Candidates list'
 
 
-class CandidateInfo(DetailView):
+class CandidateInfo(HeaderMixin, DetailView):
     queryset = Candidate.objects.filter(is_active=True, is_staff=False)
     template_name = 'candidates/candidate_info.html'
     pk_url_kwarg = 'candidate_id'
-    extra_context = {'header': 'Candidate profile'}
+    header_name = 'Candidate profile'
 
 
-class CandidateEdit(FormView):
+class CandidateEdit(HeaderMixin, FormView):
     form_class = CandidateForm
     template_name = 'candidates/edit_candidate.html'
+    header_name = 'Edit candidate'
 
     def setup(self, request: WSGIRequest, *args: tuple[Any], **kwargs: dict[str, Any]) -> None:
         super().setup(request, *args, **kwargs)
@@ -43,5 +45,5 @@ class CandidateEdit(FormView):
 
     def get_context_data(self, **kwargs: dict[str, Any]) -> dict[str, str | Candidate]:
         context_data = super().get_context_data(**kwargs)
-        context_data.update({'header': 'Edit candidate', 'candidate': self.candidate_obj})
+        context_data.update({'candidate': self.candidate_obj})
         return context_data

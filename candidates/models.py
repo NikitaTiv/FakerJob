@@ -58,7 +58,7 @@ class Candidate(AbstractUser):
 
     def save(self, *args: tuple[Any], **kwargs: dict[str, Any]) -> None:
         old_file = self.pk and Candidate.objects.get(pk=self.pk).photo
-        if old_file:
+        if old_file and old_file != self.photo:
             try:  # TODO: use a receiver here and default storage here.
                 os.remove(f'{MEDIA_FOLDER}/{str(old_file)}')
             except FileNotFoundError:
