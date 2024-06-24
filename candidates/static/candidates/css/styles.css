@@ -2,3 +2,9 @@
     width: 200px;
     height: 300px;
 }
+
+.test {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

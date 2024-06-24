@@ -15,6 +15,7 @@ class CandidateList(HeaderMixin, ListView):
     queryset = Candidate.objects.filter(is_active=True, is_staff=False)
     template_name = 'candidates/main_page.html'
     header_name = 'Candidates list'
+    paginate_by = 8
 
 
 class CandidateInfo(HeaderMixin, DetailView):
