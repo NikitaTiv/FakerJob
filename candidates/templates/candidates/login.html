@@ -1,0 +1,9 @@
+{% extends 'candidates/base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button type="submit">Login</button></p>
+    </form>
+{% endblock %}

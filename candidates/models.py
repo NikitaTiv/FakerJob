@@ -53,6 +53,10 @@ class Candidate(AbstractUser):
     def __str__(self) -> str:
         return f'User: {self.pk} ({self.first_name} {self.last_name})'
 
+    @property
+    def can_login(self) -> bool:
+        return not self.is_fake and self.is_active
+
     def get_absolute_url(self) -> str:
         return reverse('candidate_profile', kwargs={'candidate_id': self.pk})
 

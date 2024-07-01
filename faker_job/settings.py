@@ -178,3 +178,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_FOLDER = 'media'
 MEDIA_ROOT = BASE_DIR / MEDIA_FOLDER
 MEDIA_URL = f'/{MEDIA_FOLDER}/'
+
+LOGIN_REDIRECT_URL = 'candidate_list'

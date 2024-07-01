@@ -58,5 +58,5 @@ class RandomUserDataCreator:
             logger.info('RandomUserDataCreator: failed to get data.')
             return
         validated_data = self.prepare_data()
-        self.create_candidates_records(validated_data) \
-            and logger.info('RandomUserDataCreator: the new records has been added.')
+        if self.create_candidates_records(validated_data):
+            logger.info('RandomUserDataCreator: the new records has been added.')

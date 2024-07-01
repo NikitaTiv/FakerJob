@@ -1,6 +1,8 @@
 from typing import Any
 
 from django.core.handlers.wsgi import WSGIRequest
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -48,3 +50,9 @@ class CandidateEdit(HeaderMixin, FormView):
         context_data = super().get_context_data(**kwargs)
         context_data.update({'candidate': self.candidate_obj})
         return context_data
+
+
+class LoginUser(HeaderMixin, LoginView):
+    form_class = AuthenticationForm
+    template_name = 'candidates/login.html'
+    header_name = 'Authentication'
